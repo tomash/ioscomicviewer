@@ -11,7 +11,7 @@
 
 @class RBSComic;
 
-@interface RBSViewController : UIViewController <MWPhotoBrowserDelegate>
+@interface RBSIndexController : UITableViewController <MWPhotoBrowserDelegate, UITableViewDataSource>
 
 @property RBSComic *currentComic;
 
