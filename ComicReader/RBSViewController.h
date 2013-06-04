@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MWPhotoBrowser.h>
 
-@interface RBSViewController : UIViewController
+@interface RBSViewController : UIViewController <MWPhotoBrowserDelegate>
+
+@property NSArray *photos;
 
 @end

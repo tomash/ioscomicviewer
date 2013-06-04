@@ -19,6 +19,8 @@
 		24FE6C29175DE8FB007A6533 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6C27175DE8FB007A6533 /* MainStoryboard.storyboard */; };
 		24FE6C2C175DE8FB007A6533 /* RBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6C2B175DE8FB007A6533 /* RBSViewController.m */; };
 		24FE6C3E175DEF2D007A6533 /* Sample Comic.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6C3D175DEF2D007A6533 /* Sample Comic.cbz */; };
+		24FE6C41175DF18F007A6533 /* 006.png in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6C3F175DF18F007A6533 /* 006.png */; };
+		24FE6C42175DF18F007A6533 /* 007.png in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6C40175DF18F007A6533 /* 007.png */; };
 		7C214705C7E349419643A7D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D900F93E529A4AB8A2446715 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		24FE6C2A175DE8FB007A6533 /* RBSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBSViewController.h; sourceTree = "<group>"; };
 		24FE6C2B175DE8FB007A6533 /* RBSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBSViewController.m; sourceTree = "<group>"; };
 		24FE6C3D175DEF2D007A6533 /* Sample Comic.cbz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample Comic.cbz"; sourceTree = "<group>"; };
+		24FE6C3F175DF18F007A6533 /* 006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 006.png; sourceTree = "<group>"; };
+		24FE6C40175DF18F007A6533 /* 007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 007.png; sourceTree = "<group>"; };
 		D900F93E529A4AB8A2446715 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,8 @@
 		24FE6C3C175DEF2D007A6533 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				24FE6C3F175DF18F007A6533 /* 006.png */,
+				24FE6C40175DF18F007A6533 /* 007.png */,
 				24FE6C3D175DEF2D007A6533 /* Sample Comic.cbz */,
 			);
 			path = Data;
@@ -184,6 +190,8 @@
 				24FE6C26175DE8FB007A6533 /* Default-568h@2x.png in Resources */,
 				24FE6C29175DE8FB007A6533 /* MainStoryboard.storyboard in Resources */,
 				24FE6C3E175DEF2D007A6533 /* Sample Comic.cbz in Resources */,
+				24FE6C41175DF18F007A6533 /* 006.png in Resources */,
+				24FE6C42175DF18F007A6533 /* 007.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
