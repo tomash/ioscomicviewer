@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MWPhotoBrowser.h>
 
+@class RBSComic;
+
 @interface RBSViewController : UIViewController <MWPhotoBrowserDelegate>
 
-@property NSArray *photos;
+@property RBSComic *currentComic;
 
 @end

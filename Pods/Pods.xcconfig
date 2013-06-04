@@ -1,8 +1,10 @@
 ALWAYS_SEARCH_USER_PATHS = YES
+CLANG_CXX_LANGUAGE_STANDARD = c++0x
+CLANG_CXX_LIBRARY = libc++
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
-OTHER_LDFLAGS = -ObjC -framework CoreGraphics -framework ImageIO -framework MessageUI
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/MBProgressHUD" "${PODS_ROOT}/BuildHeaders/MWPhotoBrowser" "${PODS_ROOT}/BuildHeaders/SDWebImage"
+OTHER_LDFLAGS = -ObjC -Wl,-no_compact_unwind -lc++ -lz -framework CoreGraphics -framework Foundation -framework ImageIO -framework MessageUI
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/BlocksKit" "${PODS_ROOT}/BuildHeaders/MBProgressHUD" "${PODS_ROOT}/BuildHeaders/MWPhotoBrowser" "${PODS_ROOT}/BuildHeaders/SDWebImage" "${PODS_ROOT}/BuildHeaders/libffi" "${PODS_ROOT}/BuildHeaders/zipzap"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/MBProgressHUD" "${PODS_ROOT}/Headers/MWPhotoBrowser" "${PODS_ROOT}/Headers/SDWebImage"
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/BlocksKit" "${PODS_ROOT}/Headers/MBProgressHUD" "${PODS_ROOT}/Headers/MWPhotoBrowser" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/libffi" "${PODS_ROOT}/Headers/zipzap"
 PODS_ROOT = ${SRCROOT}/Pods

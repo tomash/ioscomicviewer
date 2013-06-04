@@ -6,25 +6,22 @@
 //  Copyright (c) 2013 Rebased s.c. All rights reserved.
 //
 
+#import <zipzap.h>
+#import "RBSComic.h"
 #import "RBSViewController.h"
 
 @implementation RBSViewController
 
-@synthesize photos = _photos;
+@synthesize currentComic = _currentComic;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-    NSMutableArray *photos = [NSMutableArray array];
-    MWPhoto *page;
+    // TODO: Retrieve from the documents directory
+    NSURL *comicUrl = [[NSBundle mainBundle] URLForResource:@"Sample Comic" withExtension:@"cbz"];
     
-    page = [MWPhoto photoWithFilePath:[[NSBundle mainBundle] pathForResource:@"006" ofType:@"png"]];
-    [photos addObject:page];
-    page = [MWPhoto photoWithFilePath:[[NSBundle mainBundle] pathForResource:@"007" ofType:@"png"]];
-    [photos addObject:page];
-    
-    self.photos = photos;
+    self.currentComic = [[RBSComic alloc] initWithURL:comicUrl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,14 +40,12 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
-    return 2;
+    return self.currentComic.numPages;
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
-    if (index < self.photos.count)
-        return [self.photos objectAtIndex:index];
-    return nil;
+    return [self.currentComic pageAtIndex:index];
 }
 
 @end
