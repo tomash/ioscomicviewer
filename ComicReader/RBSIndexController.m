@@ -79,6 +79,11 @@
     return [self.currentComic pageAtIndex:index];
 }
 
+//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index
+//{
+//    return self.currentComic.title;
+//}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -10,16 +10,21 @@
 #import <MWPhotoBrowser.h>
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
+#import <RXMLElement.h>
 #import "RBSComic.h"
 
 @interface RBSComic ()
 @property ZZArchive *archive;
+@property RXMLElement *metadata;
 @property (readonly) NSArray *pages;
+
+- (RXMLElement *)loadMetadata;
 @end
 
 @implementation RBSComic
 
 @synthesize archive = _archive;
+@synthesize metadata = _metadata;
 @synthesize pages = _pages;
 
 - (id)initWithURL:(NSURL *)url
@@ -27,6 +32,7 @@
     self = [super init];
     if (self) {
         self.archive = [ZZArchive archiveWithContentsOfURL:url];
+        self.metadata = [self loadMetadata];
     }
     return self;
 }
@@ -44,6 +50,16 @@
     return _pages;
 }
 
+- (NSString *)title
+{
+    if (self.metadata) {
+        return [self.metadata attribute:@"title"];
+    }
+    else {
+        return self.archive.URL.lastPathComponent;
+    }    
+}
+
 - (NSInteger)numPages
 {
     return self.pages.count;
@@ -56,7 +72,27 @@
     
     ZZArchiveEntry *entry = self.pages[index];
     UIImage *pageImage = [UIImage imageWithData:entry.data];
-    return [MWPhoto photoWithImage:pageImage];
+    
+    MWPhoto *photo = [MWPhoto photoWithImage:pageImage];
+    photo.caption = self.title;
+    
+    return photo;
+}
+
+#pragma mark Private methods
+
+- (RXMLElement *)loadMetadata
+{
+    ZZArchiveEntry *entry = [[self.archive.entries select:^BOOL(ZZArchiveEntry *e) {
+        return [e.fileName isEqualToString:@"comic.xml"];
+    }] lastObject];
+    
+    if (entry == nil) {
+        return nil;
+    }
+    else {
+        return [RXMLElement elementFromXMLData:entry.data];
+    }
 }
 
 @end

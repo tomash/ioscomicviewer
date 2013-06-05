@@ -12,8 +12,10 @@
 
 @interface RBSComic : NSObject
 
+@property (readonly) NSString *title;
+@property (readonly) NSInteger numPages;
+
 - (id)initWithURL:(NSURL *)url;
-- (NSInteger)numPages;
 - (MWPhoto *)pageAtIndex:(NSInteger)index;
 
 @end
