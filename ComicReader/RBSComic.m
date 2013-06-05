@@ -15,7 +15,6 @@
 @interface RBSComic ()
 @property ZZArchive *archive;
 @property (readonly) NSArray *pages;
-//- (NSArray *)filterPageEntries:(NSArray *)entries;
 @end
 
 @implementation RBSComic
@@ -58,18 +57,6 @@
     ZZArchiveEntry *entry = self.pages[index];
     UIImage *pageImage = [UIImage imageWithData:entry.data];
     return [MWPhoto photoWithImage:pageImage];
-}
-
-#pragma mark Private methods
-
-// Return only ZZArchiveEntries representing image files
-- (NSArray *)filterPageEntries:(NSArray *)entries
-{
-    return [entries select:^BOOL(ZZArchiveEntry *entry) {
-        CFStringRef fileExtension = (__bridge CFStringRef) entry.fileName.pathExtension;
-        CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-        return (UTTypeConformsTo(fileUTI, kUTTypeImage));
-    }];
 }
 
 @end

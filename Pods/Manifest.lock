@@ -13,8 +13,12 @@ PODS:
 
 DEPENDENCIES:
   - BlocksKit
-  - MWPhotoBrowser (~> 1.0.1)
+  - MWPhotoBrowser (from `../MWPhotoBrowser`)
   - zipzap (~> 5.0)
+
+EXTERNAL SOURCES:
+  MWPhotoBrowser:
+    :path: ../MWPhotoBrowser
 
 SPEC CHECKSUMS:
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
