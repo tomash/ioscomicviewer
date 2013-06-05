@@ -14,7 +14,9 @@
 @property (readonly) CGRect *paneRects;
 
 + (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry;
++ (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry;
+- (id)initWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 
 - (CGRect)paneAtPoint:(CGPoint)point;
 

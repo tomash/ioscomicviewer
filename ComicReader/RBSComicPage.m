@@ -10,6 +10,7 @@
 
 @interface RBSComicPage ()
 @property ZZArchiveEntry *archiveEntry;
+@property RXMLElement *metadata;
 @end
 
 @implementation RBSComicPage
@@ -19,9 +20,15 @@
 
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry
 {
+    return [self initWithArchiveEntry:entry metadata:nil];
+}
+
+- (id)initWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(id)metadata
+{
     self = [super init];
     if (self) {
         self.archiveEntry = entry;
+        self.metadata = metadata;
     }
     return self;
 }
@@ -31,20 +38,38 @@
     return [[RBSComicPage alloc] initWithArchiveEntry:entry];
 }
 
++ (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata
+{
+    return [[RBSComicPage alloc] initWithArchiveEntry:entry metadata:metadata];
+}
+
 // TODO: Replace dummy data with reading from comic.xml
 - (CGRect *)paneRects
 {
     if (_paneRects == NULL) {
-        _paneRects = malloc(3 * sizeof(CGRect));
-        _paneRects[0] = CGRectMake(0.1, 0.1, 0.8, 0.2);
-        _paneRects[1] = CGRectMake(0.1, 0.4, 0.3, 0.3);
-        _paneRects[2] = CGRectMake(0.5, 0.4, 0.4, 0.3);
+        NSArray *frames = [self.metadata children:@"frame"];
+        CGRect *rects = malloc(frames.count * sizeof(CGRect));
+        
+        for (int i = 0; i < frames.count; i++) {
+            RXMLElement *frame = frames[i];
+            
+            NSArray *coordStrings = [[frame attribute:@"relativeArea"] componentsSeparatedByString:@" "];
+            double x = [coordStrings[0] doubleValue];
+            double y = [coordStrings[1] doubleValue];
+            double w = [coordStrings[2] doubleValue];
+            double h = [coordStrings[3] doubleValue];
+            
+            rects[i] = CGRectMake(x, y, w, h);
+        }
+        
+        _paneRects = rects;
     }
     return _paneRects;
 }
 
 - (CGRect)paneAtPoint:(CGPoint)point
 {
+    // FIXME: self.paneRects can be NULL
     for (int i = 0; i < sizeof(self.paneRects); i++) {
         CGRect rect = self.paneRects[i];
         if (CGRectContainsPoint(rect, point)) {

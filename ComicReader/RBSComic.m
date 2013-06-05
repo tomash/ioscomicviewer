@@ -41,15 +41,27 @@
 - (NSArray *)pages
 {
     if (_pages == nil) {
+        NSMutableArray *pages = [NSMutableArray array];
+        
         // 1. [select] only ZZArchiveEntries with images
-        // 2. [map] to RBSComicPage instances
-        _pages = [[self.archive.entries select:^BOOL(ZZArchiveEntry *entry) {
+        NSArray *entries = [self.archive.entries select:^BOOL(ZZArchiveEntry *entry) {
             CFStringRef fileExtension = (__bridge CFStringRef) entry.fileName.pathExtension;
             CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
             return (UTTypeConformsTo(fileUTI, kUTTypeImage));
-        }] map:^id(ZZArchiveEntry *entry) {
-            return [RBSComicPage pageWithArchiveEntry:entry];
         }];
+        
+        // 2. Find "screen" XML elements
+        NSArray *screens = [self.metadata children:@"screen"];
+        
+        // 3. Match archive entries & XML elements
+        for (int i = 0; i < screens.count; i++) {
+            ZZArchiveEntry *entry = entries[i];
+            RXMLElement *metadata = screens[i];
+            
+            [pages addObject:[RBSComicPage pageWithArchiveEntry:entry metadata:metadata]];
+        }
+        
+        _pages = pages;
     }
     return _pages;
 }
