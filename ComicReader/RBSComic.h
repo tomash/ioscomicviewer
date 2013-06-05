@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class RBSComicPage;
+@class RBSScreen;
 
 @interface RBSComic : NSObject
 
 @property (readonly) NSString *title;
-@property (readonly) NSInteger numPages;
+@property (readonly) NSInteger numScreens;
 
 - (id)initWithURL:(NSURL *)url;
-- (RBSComicPage *)pageAtIndex:(NSInteger)index;
+- (RBSScreen *)screenAtIndex:(NSInteger)index;
 
 @end

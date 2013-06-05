@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2459D97D175F3E3900D2D14D /* RBSComicPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D97C175F3E3900D2D14D /* RBSComicPage.m */; };
+		2459D97D175F3E3900D2D14D /* RBSScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D97C175F3E3900D2D14D /* RBSScreen.m */; };
 		2459D97F175F4BD900D2D14D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D97E175F4BD800D2D14D /* QuartzCore.framework */; };
 		2459D9A9175F586C00D2D14D /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D983175F586C00D2D14D /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2459D9AA175F586C00D2D14D /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D985175F586C00D2D14D /* MWPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -46,8 +46,8 @@
 
 /* Begin PBXFileReference section */
 		00EF024EB101420F95ACE22E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		2459D97B175F3E3900D2D14D /* RBSComicPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSComicPage.h; sourceTree = "<group>"; };
-		2459D97C175F3E3900D2D14D /* RBSComicPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSComicPage.m; sourceTree = "<group>"; };
+		2459D97B175F3E3900D2D14D /* RBSScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSScreen.h; sourceTree = "<group>"; };
+		2459D97C175F3E3900D2D14D /* RBSScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSScreen.m; sourceTree = "<group>"; };
 		2459D97E175F4BD800D2D14D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2459D982175F586C00D2D14D /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
 		2459D983175F586C00D2D14D /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 				24FE6C1F175DE8FB007A6533 /* RBSAppDelegate.m */,
 				24FE6C44175E023D007A6533 /* RBSComic.h */,
 				24FE6C45175E023D007A6533 /* RBSComic.m */,
-				2459D97B175F3E3900D2D14D /* RBSComicPage.h */,
-				2459D97C175F3E3900D2D14D /* RBSComicPage.m */,
+				2459D97B175F3E3900D2D14D /* RBSScreen.h */,
+				2459D97C175F3E3900D2D14D /* RBSScreen.m */,
 				24FE6C2A175DE8FB007A6533 /* RBSIndexController.h */,
 				24FE6C2B175DE8FB007A6533 /* RBSIndexController.m */,
 				24FE6C27175DE8FB007A6533 /* MainStoryboard.storyboard */,
@@ -375,7 +375,7 @@
 				24FE6C20175DE8FB007A6533 /* RBSAppDelegate.m in Sources */,
 				24FE6C2C175DE8FB007A6533 /* RBSIndexController.m in Sources */,
 				24FE6C46175E023D007A6533 /* RBSComic.m in Sources */,
-				2459D97D175F3E3900D2D14D /* RBSComicPage.m in Sources */,
+				2459D97D175F3E3900D2D14D /* RBSScreen.m in Sources */,
 				2459D9A9175F586C00D2D14D /* MWCaptionView.m in Sources */,
 				2459D9AA175F586C00D2D14D /* MWPhoto.m in Sources */,
 				2459D9AB175F586C00D2D14D /* MWPhotoBrowser.m in Sources */,

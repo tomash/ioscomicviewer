@@ -11,13 +11,13 @@
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
 #import <RXMLElement.h>
-#import "RBSComicPage.h"
+#import "RBSScreen.h"
 #import "RBSComic.h"
 
 @interface RBSComic ()
 @property ZZArchive *archive;
 @property RXMLElement *metadata;
-@property (readonly) NSArray *pages;
+@property (readonly) NSArray *screens;
 
 - (RXMLElement *)loadMetadata;
 @end
@@ -26,7 +26,7 @@
 
 @synthesize archive = _archive;
 @synthesize metadata = _metadata;
-@synthesize pages = _pages;
+@synthesize screens = _screens;
 
 - (id)initWithURL:(NSURL *)url
 {
@@ -38,10 +38,10 @@
     return self;
 }
 
-- (NSArray *)pages
+- (NSArray *)screens
 {
-    if (_pages == nil) {
-        NSMutableArray *pages = [NSMutableArray array];
+    if (_screens == nil) {
+        NSMutableArray *screens = [NSMutableArray array];
         
         // 1. [select] only ZZArchiveEntries with images
         NSArray *entries = [self.archive.entries select:^BOOL(ZZArchiveEntry *entry) {
@@ -51,19 +51,19 @@
         }];
         
         // 2. Find "screen" XML elements
-        NSArray *screens = [self.metadata children:@"screen"];
+        NSArray *elements = [self.metadata children:@"screen"];
         
         // 3. Match archive entries & XML elements
-        for (int i = 0; i < screens.count; i++) {
+        for (int i = 0; i < elements.count; i++) {
             ZZArchiveEntry *entry = entries[i];
-            RXMLElement *metadata = screens[i];
+            RXMLElement *metadata = elements[i];
             
-            [pages addObject:[RBSComicPage pageWithArchiveEntry:entry metadata:metadata]];
+            [screens addObject:[RBSScreen screenWithArchiveEntry:entry metadata:metadata]];
         }
         
-        _pages = pages;
+        _screens = screens;
     }
-    return _pages;
+    return _screens;
 }
 
 - (NSString *)title
@@ -76,16 +76,16 @@
     }
 }
 
-- (NSInteger)numPages
+- (NSInteger)numScreens
 {
-    return self.pages.count;
+    return self.screens.count;
 }
 
-- (RBSComicPage *)pageAtIndex:(NSInteger)index
+- (RBSScreen *)screenAtIndex:(NSInteger)index
 {
-    if (index >= self.numPages)
+    if (index >= self.numScreens)
         return nil;
-    return self.pages[index];
+    return self.screens[index];
 }
 
 #pragma mark Private methods

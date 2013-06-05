@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Rebased s.c. All rights reserved.
 //
 
-#import "RBSComicPage.h"
+#import "RBSScreen.h"
 
-@interface RBSComicPage ()
+@interface RBSScreen ()
 @property ZZArchiveEntry *archiveEntry;
 @property RXMLElement *metadata;
 @end
 
-@implementation RBSComicPage
+@implementation RBSScreen
 
 @synthesize paneRects = _paneRects;
 @synthesize archiveEntry = _archiveEntry;
@@ -33,14 +33,14 @@
     return self;
 }
 
-+ (RBSComicPage *)pageWithArchiveEntry:(ZZArchiveEntry *)entry
++ (RBSScreen *)screenWithArchiveEntry:(ZZArchiveEntry *)entry
 {
-    return [[RBSComicPage alloc] initWithArchiveEntry:entry];
+    return [[RBSScreen alloc] initWithArchiveEntry:entry];
 }
 
-+ (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata
++ (id)screenWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata
 {
-    return [[RBSComicPage alloc] initWithArchiveEntry:entry metadata:metadata];
+    return [[RBSScreen alloc] initWithArchiveEntry:entry metadata:metadata];
 }
 
 // TODO: Replace dummy data with reading from comic.xml

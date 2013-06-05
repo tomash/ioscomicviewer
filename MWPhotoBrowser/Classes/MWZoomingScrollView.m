@@ -6,7 +6,7 @@
 //  Copyright 2010 d3i. All rights reserved.
 //
 
-#import "RBSComicPage.h"
+#import "RBSScreen.h"
 #import "MWZoomingScrollView.h"
 #import "MWPhotoBrowser.h"
 #import "MWPhoto.h"
@@ -269,8 +269,8 @@
 		// 1. Find a pane under touch location
 //        CGAffineTransform t = CGAffineTransformMakeScale(_photoImageView.frame.size.width, _photoImageView.frame.size.height);
 //        CGRect paneRect = CGRectApplyAffineTransform(page.paneRects[0], t);
-        RBSComicPage *page = (RBSComicPage *) self.photo;
-        CGRect paneRect = [page paneAtPoint:[self relativeImagePoint:touchPoint]];
+        RBSScreen *screen = (RBSScreen *) self.photo;
+        CGRect paneRect = [screen paneAtPoint:[self relativeImagePoint:touchPoint]];
         
         // 2. Zoom into the pane
 		[self zoomToRect:[self absoluteImageRect:paneRect] animated:YES];

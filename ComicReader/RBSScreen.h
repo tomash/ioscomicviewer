@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <MWPhotoProtocol.h>
 
-@interface RBSComicPage : NSObject <MWPhoto>
+@interface RBSScreen : NSObject <MWPhoto>
 
 @property (readonly) CGRect *paneRects;
 
-+ (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry;
-+ (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
++ (id)screenWithArchiveEntry:(ZZArchiveEntry *)entry;
++ (id)screenWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry;
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 

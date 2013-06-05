@@ -9,7 +9,7 @@
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
 #import "RBSComic.h"
-#import "RBSComicPage.h"
+#import "RBSScreen.h"
 #import "RBSIndexController.h"
 
 @interface RBSIndexController ()
@@ -72,12 +72,12 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
-    return self.currentComic.numPages;
+    return self.currentComic.numScreens;
 }
 
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
-    return [self.currentComic pageAtIndex:index];
+    return [self.currentComic screenAtIndex:index];
 }
 
 //- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index
