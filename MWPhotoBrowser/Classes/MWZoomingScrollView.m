@@ -6,6 +6,7 @@
 //  Copyright 2010 d3i. All rights reserved.
 //
 
+#import "RBSComicPage.h"
 #import "MWZoomingScrollView.h"
 #import "MWPhotoBrowser.h"
 #import "MWPhoto.h"
@@ -20,13 +21,16 @@
 // Private methods and properties
 @interface MWZoomingScrollView ()
 @property (nonatomic, assign) MWPhotoBrowser *photoBrowser;
+@property BOOL paneMode;
 - (void)handleSingleTap:(CGPoint)touchPoint;
 - (void)handleDoubleTap:(CGPoint)touchPoint;
+- (CGPoint)relativeImagePoint:(CGPoint)absolutePoint;
+- (CGRect)absoluteImageRect:(CGRect)relativeRect;
 @end
 
 @implementation MWZoomingScrollView
 
-@synthesize photoBrowser = _photoBrowser, photo = _photo, captionView = _captionView;
+@synthesize photoBrowser = _photoBrowser, photo = _photo, captionView = _captionView, paneMode = _paneMode;
 
 - (id)initWithPhotoBrowser:(MWPhotoBrowser *)browser {
     if ((self = [super init])) {
@@ -253,16 +257,26 @@
 	[NSObject cancelPreviousPerformRequestsWithTarget:_photoBrowser];
 	
 	// Zoom
-	if (self.zoomScale == self.maximumZoomScale) {
+	if (self.paneMode) {
 		
 		// Zoom out
 		[self setZoomScale:self.minimumZoomScale animated:YES];
+        
+        self.paneMode = NO;
 		
 	} else {
 		
-		// Zoom in
-		[self zoomToRect:CGRectMake(touchPoint.x, touchPoint.y, 1, 1) animated:YES];
+		// 1. Find a pane under touch location
+//        CGAffineTransform t = CGAffineTransformMakeScale(_photoImageView.frame.size.width, _photoImageView.frame.size.height);
+//        CGRect paneRect = CGRectApplyAffineTransform(page.paneRects[0], t);
+        RBSComicPage *page = (RBSComicPage *) self.photo;
+        CGRect paneRect = [page paneAtPoint:[self relativeImagePoint:touchPoint]];
+        
+        // 2. Zoom into the pane
+		[self zoomToRect:[self absoluteImageRect:paneRect] animated:YES];
 		
+        self.paneMode = YES;
+        
 	}
 	
 	// Delay controls
@@ -284,6 +298,22 @@
 }
 - (void)view:(UIView *)view doubleTapDetected:(UITouch *)touch {
     [self handleDoubleTap:[touch locationInView:view]];
+}
+
+// Convert absolute screen coordinate to a image-level position where
+// both coordinates are between 0 and 1
+- (CGPoint)relativeImagePoint:(CGPoint)absolutePoint
+{
+    CGSize size = _photoImageView.image.size;
+    CGAffineTransform t = CGAffineTransformMakeScale(1/size.width, 1/size.height);
+    return CGPointApplyAffineTransform(absolutePoint, t);
+}
+
+- (CGRect)absoluteImageRect:(CGRect)relativeRect
+{
+    CGSize size = _photoImageView.image.size;
+    CGAffineTransform t = CGAffineTransformMakeScale(size.width, size.height);
+    return CGRectApplyAffineTransform(relativeRect, t);
 }
 
 @end

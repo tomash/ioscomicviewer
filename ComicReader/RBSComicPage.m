@@ -43,6 +43,19 @@
     return _paneRects;
 }
 
+- (CGRect)paneAtPoint:(CGPoint)point
+{
+    for (int i = 0; i < sizeof(self.paneRects); i++) {
+        CGRect rect = self.paneRects[i];
+        if (CGRectContainsPoint(rect, point)) {
+            NSLog(@"Found rect: %@", NSStringFromCGRect(rect));
+            return rect;
+        }
+    }
+    
+    return CGRectZero;
+}
+
 - (void)dealloc
 {
     free(_paneRects);
