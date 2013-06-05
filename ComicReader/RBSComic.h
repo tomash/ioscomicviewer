@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class MWPhoto;
+@class RBSComicPage;
 
 @interface RBSComic : NSObject
 
@@ -16,6 +16,6 @@
 @property (readonly) NSInteger numPages;
 
 - (id)initWithURL:(NSURL *)url;
-- (MWPhoto *)pageAtIndex:(NSInteger)index;
+- (RBSComicPage *)pageAtIndex:(NSInteger)index;
 
 @end

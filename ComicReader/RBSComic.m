@@ -11,6 +11,7 @@
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
 #import <RXMLElement.h>
+#import "RBSComicPage.h"
 #import "RBSComic.h"
 
 @interface RBSComic ()
@@ -40,11 +41,14 @@
 - (NSArray *)pages
 {
     if (_pages == nil) {
-        // Pages are ZZArchiveEntry objects which represent image files
-        _pages = [self.archive.entries select:^BOOL(ZZArchiveEntry *entry) {
+        // 1. [select] only ZZArchiveEntries with images
+        // 2. [map] to RBSComicPage instances
+        _pages = [[self.archive.entries select:^BOOL(ZZArchiveEntry *entry) {
             CFStringRef fileExtension = (__bridge CFStringRef) entry.fileName.pathExtension;
             CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
             return (UTTypeConformsTo(fileUTI, kUTTypeImage));
+        }] map:^id(ZZArchiveEntry *entry) {
+            return [RBSComicPage pageWithArchiveEntry:entry];
         }];
     }
     return _pages;
@@ -65,18 +69,11 @@
     return self.pages.count;
 }
 
-- (MWPhoto *)pageAtIndex:(NSInteger)index
+- (RBSComicPage *)pageAtIndex:(NSInteger)index
 {
     if (index >= self.numPages)
         return nil;
-    
-    ZZArchiveEntry *entry = self.pages[index];
-    UIImage *pageImage = [UIImage imageWithData:entry.data];
-    
-    MWPhoto *photo = [MWPhoto photoWithImage:pageImage];
-    photo.caption = self.title;
-    
-    return photo;
+    return self.pages[index];
 }
 
 #pragma mark Private methods
