@@ -9,6 +9,7 @@
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
 #import "RBSComic.h"
+#import "RBSComicPage.h"
 #import "RBSIndexController.h"
 
 @interface RBSIndexController ()
@@ -74,7 +75,7 @@
     return self.currentComic.numPages;
 }
 
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
     return [self.currentComic pageAtIndex:index];
 }

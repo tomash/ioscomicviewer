@@ -61,7 +61,7 @@
     }
     else {
         return self.archive.URL.lastPathComponent;
-    }    
+    }
 }
 
 - (NSInteger)numPages

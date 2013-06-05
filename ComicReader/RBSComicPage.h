@@ -12,7 +12,8 @@
 @interface RBSComicPage : NSObject <MWPhoto>
 
 + (id)pageWithArchiveEntry:(ZZArchiveEntry *)entry;
-
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry;
+
+@property (readonly) CGRect *paneRects;
 
 @end

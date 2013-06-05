@@ -2,33 +2,18 @@ PODS:
   - BlocksKit (1.8.2):
     - libffi
   - libffi (3.0.11)
-  - MBProgressHUD (0.6)
-  - MWPhotoBrowser (1.0.1):
-    - MBProgressHUD
-    - SDWebImage (< 3.0.0)
   - RaptureXML (1.0.1)
-  - SDWebImage (2.7.4):
-    - SDWebImage/Main
-  - SDWebImage/Main (2.7.4)
   - zipzap (5.0)
 
 DEPENDENCIES:
   - BlocksKit
-  - MWPhotoBrowser (from `../MWPhotoBrowser`)
   - RaptureXML
   - zipzap (~> 5.0)
-
-EXTERNAL SOURCES:
-  MWPhotoBrowser:
-    :path: ../MWPhotoBrowser
 
 SPEC CHECKSUMS:
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
   libffi: 8a1d9ba43c0c84b546b42c6f742714e73aa07ae1
-  MBProgressHUD: 9b55a90566fb5d07df0602f6fd9fa04510ad5d52
-  MWPhotoBrowser: e54233d4c88e951a3b6b8f136393614cf319ac47
   RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
-  SDWebImage: 06f076026fe7867ab0100fce95d943f7bff981eb
   zipzap: 9de67d83fbece9d32192b4e7618d2ce1733f3122
 
 COCOAPODS: 0.20.2
