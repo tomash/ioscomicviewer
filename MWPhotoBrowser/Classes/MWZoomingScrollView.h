@@ -37,4 +37,8 @@
 - (void)setMaxMinZoomScalesForCurrentBounds;
 - (void)prepareForReuse;
 
+// Comic reader extensions
+- (void)jumpToNextFrame;
+- (void)jumpToPreviousFrame;
+
 @end

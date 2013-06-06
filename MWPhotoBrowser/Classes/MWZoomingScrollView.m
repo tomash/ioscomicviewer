@@ -7,6 +7,7 @@
 //
 
 #import "RBSScreen.h"
+#import "RBSFrame.h"
 #import "MWZoomingScrollView.h"
 #import "MWPhotoBrowser.h"
 #import "MWPhoto.h"
@@ -21,16 +22,20 @@
 // Private methods and properties
 @interface MWZoomingScrollView ()
 @property (nonatomic, assign) MWPhotoBrowser *photoBrowser;
-@property BOOL paneMode;
 - (void)handleSingleTap:(CGPoint)touchPoint;
 - (void)handleDoubleTap:(CGPoint)touchPoint;
+
+// Comic reader extensions
+@property (readonly) RBSScreen *screen;
+@property NSInteger currentFrameIndex;
 - (CGPoint)relativeImagePoint:(CGPoint)absolutePoint;
 - (CGRect)absoluteImageRect:(CGRect)relativeRect;
+- (void)zoomToCurrentFrame;
 @end
 
 @implementation MWZoomingScrollView
 
-@synthesize photoBrowser = _photoBrowser, photo = _photo, captionView = _captionView, paneMode = _paneMode;
+@synthesize photoBrowser = _photoBrowser, photo = _photo, captionView = _captionView, currentFrameIndex = _currentFrameIndex;
 
 - (id)initWithPhotoBrowser:(MWPhotoBrowser *)browser {
     if ((self = [super init])) {
@@ -257,25 +262,23 @@
 	[NSObject cancelPreviousPerformRequestsWithTarget:_photoBrowser];
 	
 	// Zoom
-	if (self.paneMode) {
+	if (self.photoBrowser.frameMode) {
 		
 		// Zoom out
 		[self setZoomScale:self.minimumZoomScale animated:YES];
         
-        self.paneMode = NO;
+        self.photoBrowser.frameMode = NO;
 		
 	} else {
 		
-		// 1. Find a pane under touch location
-//        CGAffineTransform t = CGAffineTransformMakeScale(_photoImageView.frame.size.width, _photoImageView.frame.size.height);
-//        CGRect paneRect = CGRectApplyAffineTransform(page.paneRects[0], t);
-        RBSScreen *screen = (RBSScreen *) self.photo;
-        CGRect paneRect = [screen paneAtPoint:[self relativeImagePoint:touchPoint]];
-        
-        // 2. Zoom into the pane
-		[self zoomToRect:[self absoluteImageRect:paneRect] animated:YES];
-		
-        self.paneMode = YES;
+		// Find a frame under touch location
+        NSInteger index = [self.screen indexOfFrameAtPoint:[self relativeImagePoint:touchPoint]];
+        if (index != -1) {
+            self.currentFrameIndex = index;
+            [self zoomToCurrentFrame];
+            
+            self.photoBrowser.frameMode = YES;
+        }
         
 	}
 	
@@ -300,6 +303,13 @@
     [self handleDoubleTap:[touch locationInView:view]];
 }
 
+#pragma mark - Comic reader extensions
+
+- (RBSScreen *)screen
+{
+    return (RBSScreen *) self.photo;
+}
+
 // Convert absolute screen coordinate to a image-level position where
 // both coordinates are between 0 and 1
 - (CGPoint)relativeImagePoint:(CGPoint)absolutePoint
@@ -314,6 +324,29 @@
     CGSize size = _photoImageView.image.size;
     CGAffineTransform t = CGAffineTransformMakeScale(size.width, size.height);
     return CGRectApplyAffineTransform(relativeRect, t);
+}
+
+- (void)zoomToCurrentFrame
+{
+    RBSFrame *frame = self.screen.frames[self.currentFrameIndex];
+    CGRect rect = [self absoluteImageRect:frame.rect];
+    [self zoomToRect:rect animated:YES];
+}
+
+- (void)jumpToNextFrame
+{
+    if (self.currentFrameIndex < self.screen.numFrames - 1) {
+        self.currentFrameIndex += 1;
+        [self zoomToCurrentFrame];
+    }
+}
+
+- (void)jumpToPreviousFrame
+{
+    if (self.currentFrameIndex > 0) {
+        self.currentFrameIndex -= 1;
+        [self zoomToCurrentFrame];
+    }
 }
 
 @end

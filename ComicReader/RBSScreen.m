@@ -6,7 +6,28 @@
 //  Copyright (c) 2013 Rebased s.c. All rights reserved.
 //
 
+#import "RBSFrame.h"
 #import "RBSScreen.h"
+
+CGRect rectFromRelativeAreaAttribute(NSString *attributeString)
+{
+    NSArray *coordStrings = [attributeString componentsSeparatedByString:@" "];
+
+    double x = [coordStrings[0] doubleValue];
+    double y = [coordStrings[1] doubleValue];
+    double w = [coordStrings[2] doubleValue];
+    double h = [coordStrings[3] doubleValue];
+    
+    return CGRectMake(x, y, w, h);
+}
+
+NSArray *parseFramesMetadata(NSArray *framesMetadata)
+{
+    return [framesMetadata map:^id(RXMLElement *element) {
+        CGRect rect = rectFromRelativeAreaAttribute([element attribute:@"relativeArea"]);
+        return [[RBSFrame alloc] initWithRect:rect];
+    }];
+}
 
 @interface RBSScreen ()
 @property ZZArchiveEntry *archiveEntry;
@@ -15,7 +36,7 @@
 
 @implementation RBSScreen
 
-@synthesize paneRects = _paneRects;
+@synthesize frames = _frames;
 @synthesize archiveEntry = _archiveEntry;
 
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry
@@ -43,47 +64,26 @@
     return [[RBSScreen alloc] initWithArchiveEntry:entry metadata:metadata];
 }
 
-// TODO: Replace dummy data with reading from comic.xml
-- (CGRect *)paneRects
+- (NSArray *)frames
 {
-    if (_paneRects == NULL) {
-        NSArray *frames = [self.metadata children:@"frame"];
-        CGRect *rects = malloc(frames.count * sizeof(CGRect));
-        
-        for (int i = 0; i < frames.count; i++) {
-            RXMLElement *frame = frames[i];
-            
-            NSArray *coordStrings = [[frame attribute:@"relativeArea"] componentsSeparatedByString:@" "];
-            double x = [coordStrings[0] doubleValue];
-            double y = [coordStrings[1] doubleValue];
-            double w = [coordStrings[2] doubleValue];
-            double h = [coordStrings[3] doubleValue];
-            
-            rects[i] = CGRectMake(x, y, w, h);
-        }
-        
-        _paneRects = rects;
+    if (_frames == nil) {
+        _frames = parseFramesMetadata([self.metadata children:@"frame"]);
     }
-    return _paneRects;
+    return _frames;
 }
 
-- (CGRect)paneAtPoint:(CGPoint)point
+- (NSUInteger)numFrames
 {
-    // FIXME: self.paneRects can be NULL
-    for (int i = 0; i < sizeof(self.paneRects); i++) {
-        CGRect rect = self.paneRects[i];
-        if (CGRectContainsPoint(rect, point)) {
-            NSLog(@"Found rect: %@", NSStringFromCGRect(rect));
-            return rect;
-        }
-    }
-    
-    return CGRectZero;
+    return self.frames.count;
 }
 
-- (void)dealloc
+- (NSInteger)indexOfFrameAtPoint:(CGPoint)point
 {
-    free(_paneRects);
+    for (int i = 0; i < self.numFrames; i++) {
+        RBSFrame *frame = self.frames[i];
+        if (CGRectContainsPoint(frame.rect, point)) return i;
+    }
+    return -1;
 }
 
 #pragma mark MWPhoto protocol

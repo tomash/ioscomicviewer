@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
     #import <zipzap.h>
     #import <RXMLElement.h>
+    #import <NSArray+BlocksKit.h>
 #endif

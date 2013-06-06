@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <MWPhotoProtocol.h>
 
+@class RBSFrame;
+
 @interface RBSScreen : NSObject <MWPhoto>
 
-@property (readonly) CGRect *paneRects;
+@property (readonly) NSArray *frames;
+@property (readonly) NSUInteger numFrames;
 
 + (id)screenWithArchiveEntry:(ZZArchiveEntry *)entry;
 + (id)screenWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry;
 - (id)initWithArchiveEntry:(ZZArchiveEntry *)entry metadata:(RXMLElement *)metadata;
 
-- (CGRect)paneAtPoint:(CGPoint)point;
+- (NSInteger)indexOfFrameAtPoint:(CGPoint)point;
 
 @end

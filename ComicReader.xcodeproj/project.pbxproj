@@ -28,6 +28,7 @@
 		2459D9B9175F586C00D2D14D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D9A8175F586C00D2D14D /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2459D9BB175F58EC00D2D14D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D9BA175F58EC00D2D14D /* ImageIO.framework */; };
 		2459D9BD175F58F400D2D14D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D9BC175F58F400D2D14D /* MessageUI.framework */; };
+		24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 24998F4B1760B79100C4F931 /* RBSFrame.m */; };
 		24FE6C10175DE8FB007A6533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FE6C0F175DE8FB007A6533 /* UIKit.framework */; };
 		24FE6C12175DE8FB007A6533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FE6C11175DE8FB007A6533 /* Foundation.framework */; };
 		24FE6C14175DE8FB007A6533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FE6C13175DE8FB007A6533 /* CoreGraphics.framework */; };
@@ -87,6 +88,8 @@
 		2459D9A8175F586C00D2D14D /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		2459D9BA175F58EC00D2D14D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2459D9BC175F58F400D2D14D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		24998F4A1760B79100C4F931 /* RBSFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSFrame.h; sourceTree = "<group>"; };
+		24998F4B1760B79100C4F931 /* RBSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSFrame.m; sourceTree = "<group>"; };
 		24FE6C0C175DE8FB007A6533 /* ComicReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComicReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FE6C0F175DE8FB007A6533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24FE6C11175DE8FB007A6533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,6 +206,19 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		24998F491760B77C00C4F931 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24FE6C44175E023D007A6533 /* RBSComic.h */,
+				24FE6C45175E023D007A6533 /* RBSComic.m */,
+				24998F4A1760B79100C4F931 /* RBSFrame.h */,
+				24998F4B1760B79100C4F931 /* RBSFrame.m */,
+				2459D97B175F3E3900D2D14D /* RBSScreen.h */,
+				2459D97C175F3E3900D2D14D /* RBSScreen.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		24FE6C03175DE8FB007A6533 = {
 			isa = PBXGroup;
 			children = (
@@ -240,12 +256,9 @@
 		24FE6C15175DE8FB007A6533 /* ComicReader */ = {
 			isa = PBXGroup;
 			children = (
+				24998F491760B77C00C4F931 /* Models */,
 				24FE6C1E175DE8FB007A6533 /* RBSAppDelegate.h */,
 				24FE6C1F175DE8FB007A6533 /* RBSAppDelegate.m */,
-				24FE6C44175E023D007A6533 /* RBSComic.h */,
-				24FE6C45175E023D007A6533 /* RBSComic.m */,
-				2459D97B175F3E3900D2D14D /* RBSScreen.h */,
-				2459D97C175F3E3900D2D14D /* RBSScreen.m */,
 				24FE6C2A175DE8FB007A6533 /* RBSIndexController.h */,
 				24FE6C2B175DE8FB007A6533 /* RBSIndexController.m */,
 				24FE6C27175DE8FB007A6533 /* MainStoryboard.storyboard */,
@@ -390,6 +403,7 @@
 				2459D9B7175F586C00D2D14D /* SDWebImagePrefetcher.m in Sources */,
 				2459D9B8175F586C00D2D14D /* UIButton+WebCache.m in Sources */,
 				2459D9B9175F586C00D2D14D /* UIImageView+WebCache.m in Sources */,
+				24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

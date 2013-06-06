@@ -86,6 +86,7 @@
 - (MWZoomingScrollView *)pageDisplayedAtIndex:(NSUInteger)index;
 - (MWZoomingScrollView *)pageDisplayingPhoto:(id<MWPhoto>)photo;
 - (MWZoomingScrollView *)dequeueRecycledPage;
+- (MWZoomingScrollView *)currentPage;
 - (void)configurePage:(MWZoomingScrollView *)page forIndex:(NSUInteger)index;
 - (void)didStartViewingPageAtIndex:(NSUInteger)index;
 
@@ -139,6 +140,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 @synthesize displayActionButton = _displayActionButton, actionsSheet = _actionsSheet;
 @synthesize progressHUD = _progressHUD;
 @synthesize previousViewControllerBackButton = _previousViewControllerBackButton;
+@synthesize frameMode = _frameMode;
 
 #pragma mark - NSObject
 
@@ -735,6 +737,11 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	return page;
 }
 
+- (MWZoomingScrollView *)currentPage
+{
+    return [self pageDisplayedAtIndex:_currentPageIndex];
+}
+
 // Handle page changes
 - (void)didStartViewingPageAtIndex:(NSUInteger)index {
     
@@ -771,6 +778,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         [self loadAdjacentPhotosIfNecessary:currentPhoto];
     }
     
+    // TODO: In frame mode, zoom into the first or last frame
 }
 
 #pragma mark - Frame Calculations
@@ -885,8 +893,25 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	
 }
 
-- (void)gotoPreviousPage { [self jumpToPageAtIndex:_currentPageIndex-1]; }
-- (void)gotoNextPage { [self jumpToPageAtIndex:_currentPageIndex+1]; }
+- (void)gotoPreviousPage
+{
+    if (self.frameMode) {
+        [self.currentPage jumpToPreviousFrame];
+    }
+    else {
+        [self jumpToPageAtIndex:_currentPageIndex-1];
+    }
+}
+
+- (void)gotoNextPage
+{
+    if (self.frameMode) {
+        [self.currentPage jumpToNextFrame];
+    }
+    else {
+        [self jumpToPageAtIndex:_currentPageIndex+1];
+    }
+}
 
 #pragma mark - Control Hiding / Showing
 
@@ -1153,5 +1178,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     }
 	[self dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - Frame browsing
 
 @end
