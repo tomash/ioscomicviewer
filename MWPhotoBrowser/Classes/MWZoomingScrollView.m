@@ -27,10 +27,8 @@
 
 // Comic reader extensions
 @property (readonly) RBSScreen *screen;
-@property NSInteger currentFrameIndex;
 - (CGPoint)relativeImagePoint:(CGPoint)absolutePoint;
 - (CGRect)absoluteImageRect:(CGRect)relativeRect;
-- (void)zoomToCurrentFrame;
 @end
 
 @implementation MWZoomingScrollView
@@ -335,7 +333,7 @@
 
 - (void)jumpToNextFrame
 {
-    if (self.currentFrameIndex < self.screen.numFrames - 1) {
+    if (self.currentFrameIndex < self.lastFrameIndex) {
         self.currentFrameIndex += 1;
         [self zoomToCurrentFrame];
     }
@@ -347,6 +345,21 @@
         self.currentFrameIndex -= 1;
         [self zoomToCurrentFrame];
     }
+}
+
+- (NSInteger)lastFrameIndex
+{
+    return self.screen.numFrames - 1;
+}
+
+- (BOOL)isShowingFirstFrame
+{
+    return self.currentFrameIndex == 0;
+}
+
+- (BOOL)isShowingLastFrame
+{
+    return self.currentFrameIndex == self.lastFrameIndex;
 }
 
 @end

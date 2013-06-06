@@ -777,8 +777,6 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         // photo loaded so load ajacent now
         [self loadAdjacentPhotosIfNecessary:currentPhoto];
     }
-    
-    // TODO: In frame mode, zoom into the first or last frame
 }
 
 #pragma mark - Frame Calculations
@@ -849,7 +847,16 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	if (_currentPageIndex != previousCurrentPage) {
         [self didStartViewingPageAtIndex:index];
     }
-	
+    
+    if (self.frameMode) {
+        // Either we start at the first or the last frame
+        if (_currentPageIndex == previousCurrentPage + 1)
+            self.currentPage.currentFrameIndex = 0;
+        else if (_currentPageIndex == previousCurrentPage - 1)
+            self.currentPage.currentFrameIndex = self.currentPage.lastFrameIndex;
+        
+        [self.currentPage zoomToCurrentFrame];
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -874,8 +881,8 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	}
 	
 	// Buttons
-	_previousButton.enabled = (_currentPageIndex > 0);
-	_nextButton.enabled = (_currentPageIndex < [self numberOfPhotos]-1);
+	_previousButton.enabled = (_currentPageIndex > 0) || self.currentPage.currentFrameIndex > 0;
+	_nextButton.enabled = (_currentPageIndex < [self numberOfPhotos]-1) || self.currentPage.currentFrameIndex < self.currentPage.lastFrameIndex;
 	
 }
 
@@ -895,8 +902,9 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)gotoPreviousPage
 {
-    if (self.frameMode) {
+    if (self.frameMode && !self.currentPage.isShowingFirstFrame) {
         [self.currentPage jumpToPreviousFrame];
+        [self updateNavigation];
     }
     else {
         [self jumpToPageAtIndex:_currentPageIndex-1];
@@ -905,8 +913,9 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)gotoNextPage
 {
-    if (self.frameMode) {
+    if (self.frameMode && !self.currentPage.isShowingLastFrame) {
         [self.currentPage jumpToNextFrame];
+        [self updateNavigation];
     }
     else {
         [self jumpToPageAtIndex:_currentPageIndex+1];
