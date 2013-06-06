@@ -103,6 +103,8 @@
 - (void)jumpToPageAtIndex:(NSUInteger)index;
 - (void)gotoPreviousPage;
 - (void)gotoNextPage;
+- (void)leftSwipe;
+- (void)rightSwipe;
 
 // Controls
 - (void)cancelControlHiding;
@@ -254,6 +256,15 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     _previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowLeft.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPreviousPage)];
     _nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowRight.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
+    
+    // Swipe recognizers
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    [_pagingScrollView addGestureRecognizer:leftSwipe];
+    
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipe)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [_pagingScrollView addGestureRecognizer:rightSwipe];
     
     // Update
     [self reloadData];
@@ -922,6 +933,16 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     }
 }
 
+- (void)rightSwipe
+{
+    [self gotoPreviousPage];
+}
+
+- (void)leftSwipe
+{
+    [self gotoNextPage];
+}
+
 #pragma mark - Control Hiding / Showing
 
 // If permanent then we don't set timers to hide again
@@ -1189,5 +1210,18 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 #pragma mark - Frame browsing
+
+- (void)setFrameMode:(BOOL)frameMode
+{
+    _frameMode = frameMode;
+    if (_frameMode == YES) {
+        _pagingScrollView.scrollEnabled = NO;
+        self.currentPage.scrollEnabled = NO;
+    }
+    else {
+        _pagingScrollView.scrollEnabled = YES;
+        self.currentPage.scrollEnabled = YES;
+    }
+}
 
 @end
