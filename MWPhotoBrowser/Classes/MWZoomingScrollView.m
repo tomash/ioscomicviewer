@@ -263,6 +263,7 @@
 	if (self.photoBrowser.frameMode) {
 		
 		// Zoom out
+        self.contentInset = UIEdgeInsetsZero;
 		[self setZoomScale:self.minimumZoomScale animated:YES];
         
         self.photoBrowser.frameMode = NO;
@@ -273,6 +274,9 @@
         NSInteger index = [self.screen indexOfFrameAtPoint:[self relativeImagePoint:touchPoint]];
         if (index != -1) {
             self.currentFrameIndex = index;
+            
+            CGSize size = [[UIScreen mainScreen] bounds].size;
+            self.contentInset = UIEdgeInsetsMake(size.height / 2, size.width / 2, size.height / 2, size.width / 2);
             [self zoomToCurrentFrame];
             
             self.photoBrowser.frameMode = YES;
