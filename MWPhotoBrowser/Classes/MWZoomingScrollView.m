@@ -232,6 +232,9 @@
             _photoImageView.frame = frameToCenter;
         
     }
+    else {
+        [self zoomToCurrentFrame];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
