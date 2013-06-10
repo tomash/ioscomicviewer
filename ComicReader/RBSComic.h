@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class RBSScreen;
+@class ZZArchive, RBSScreen;
 
 @interface RBSComic : NSObject
 
-@property (readonly) NSString *title;
+@property ZZArchive *archive;
+@property NSArray *screens;
 @property (readonly) NSInteger numScreens;
 
-- (id)initWithURL:(NSURL *)url;
 - (RBSScreen *)screenAtIndex:(NSInteger)index;
 
 @end

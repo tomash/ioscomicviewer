@@ -9,6 +9,7 @@
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
 #import "RBSComic.h"
+#import "RBSComic+Loading.h"
 #import "RBSScreen.h"
 #import "RBSIndexController.h"
 
@@ -110,7 +111,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSURL *comicURL = [NSURL fileURLWithPath:self.comicFiles[indexPath.row]];
-    self.currentComic = [[RBSComic alloc] initWithURL:comicURL];
+    self.currentComic = [RBSComic comicWithURL:comicURL];
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     [self.navigationController pushViewController:browser animated:YES];
