@@ -51,6 +51,9 @@ typedef enum {
 // Set page that photo browser starts on
 - (void)setInitialPageIndex:(NSUInteger)index;
 
+// Toggle zoom mode
+- (void)toggleZoomMode;
+
 @end
 
 

@@ -1212,16 +1212,32 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 #pragma mark - Frame browsing
 
-- (void)setZoomMode:(RBSZoomMode)zoomMode
+- (void)toggleZoomMode
 {
-    _zoomMode = zoomMode;
-    if (_zoomMode == RBSZoomModeFrame) {
-        _pagingScrollView.scrollEnabled = NO;
-        self.currentPage.scrollEnabled = NO;
-    }
-    else {
-        _pagingScrollView.scrollEnabled = YES;
-        self.currentPage.scrollEnabled = YES;
+    switch (self.zoomMode) {
+        case RBSZoomModePage:
+            self.zoomMode = RBSZoomModeWidth;
+            break;
+            
+        case RBSZoomModeWidth:
+            self.zoomMode = RBSZoomModeFrame;
+            
+            _pagingScrollView.scrollEnabled = NO;
+            self.currentPage.scrollEnabled = NO;
+            
+            break;
+            
+        case RBSZoomModeFrame:
+            self.zoomMode = RBSZoomModePage;
+            
+            _pagingScrollView.scrollEnabled = YES;
+            self.currentPage.scrollEnabled = YES;
+            
+            break;
+            
+        default:
+            NSLog(@"Incorrect zoom mode");
+            break;
     }
 }
 
