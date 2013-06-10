@@ -13,16 +13,4 @@
 @synthesize archive = _archive;
 @synthesize screens = _screens;
 
-- (NSInteger)numScreens
-{
-    return self.screens.count;
-}
-
-- (RBSScreen *)screenAtIndex:(NSInteger)index
-{
-    if (index >= self.numScreens)
-        return nil;
-    return self.screens[index];
-}
-
 @end

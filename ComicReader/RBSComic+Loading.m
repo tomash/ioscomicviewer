@@ -27,8 +27,6 @@ RXMLElement *loadMetadata(ZZArchive *archive)
 
 NSArray *loadScreens(ZZArchive *archive)
 {
-    NSMutableArray *screens = [NSMutableArray array];
-    
     // 1. [select] only ZZArchiveEntries with images
     NSArray *entries = [archive.entries select:^BOOL(ZZArchiveEntry *entry) {
         CFStringRef fileExtension = (__bridge CFStringRef) entry.fileName.pathExtension;
@@ -38,18 +36,26 @@ NSArray *loadScreens(ZZArchive *archive)
     
     RXMLElement *metadata = loadMetadata(archive);
 
-    // 2. Find "screen" XML elements
-    NSArray *elements = [metadata children:@"screen"];
-    
-    // 3. Match archive entries & XML elements
-    for (int i = 0; i < elements.count; i++) {
-        ZZArchiveEntry *entry = entries[i];
-        RXMLElement *metadata = elements[i];
+    if (metadata != nil) {
+        // 2. Find "screen" XML elements
+        NSMutableArray *screens = [NSMutableArray array];
+        NSArray *elements = [metadata children:@"screen"];
         
-        [screens addObject:[RBSScreen screenWithArchiveEntry:entry metadata:metadata]];
+        // 3. Match archive entries & XML elements
+        for (int i = 0; i < elements.count; i++) {
+            ZZArchiveEntry *entry = entries[i];
+            RXMLElement *metadata = elements[i];
+            
+            [screens addObject:[RBSScreen screenWithArchiveEntry:entry metadata:metadata]];
+        }
+        
+        return screens;
     }
-    
-    return screens;
+    else {
+        return [entries map:^id(ZZArchiveEntry *entry) {
+            return [RBSScreen screenWithArchiveEntry:entry];
+        }];
+    }
 }
 
 @implementation RBSComic (Loading)

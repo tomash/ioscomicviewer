@@ -76,12 +76,14 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
-    return self.currentComic.numScreens;
+    return self.currentComic.screens.count;
 }
 
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
-    return [self.currentComic screenAtIndex:index];
+    if (index >= self.currentComic.screens.count)
+        return nil;
+    return self.currentComic.screens[index];
 }
 
 #pragma mark UITableViewDataSource

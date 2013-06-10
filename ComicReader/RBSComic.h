@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZZArchive, RBSScreen;
+@class RBSScreen;
 
 @interface RBSComic : NSObject
 
 @property ZZArchive *archive;
 @property NSArray *screens;
-@property (readonly) NSInteger numScreens;
-
-- (RBSScreen *)screenAtIndex:(NSInteger)index;
 
 @end
