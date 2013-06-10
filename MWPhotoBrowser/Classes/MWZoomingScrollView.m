@@ -210,7 +210,7 @@
     CGSize boundsSize = self.bounds.size;
     CGRect frameToCenter = _photoImageView.frame;
     
-    if (!self.photoBrowser.frameMode) {
+    if (self.photoBrowser.zoomMode != RBSZoomModeFrame) {
         self.contentInset = UIEdgeInsetsZero;
         
         // Horizontally
@@ -267,13 +267,13 @@
 	[NSObject cancelPreviousPerformRequestsWithTarget:_photoBrowser];
 	
 	// Zoom
-	if (self.photoBrowser.frameMode) {
+	if (self.photoBrowser.zoomMode == RBSZoomModeFrame) {
 		
 		// Zoom out
         self.contentInset = UIEdgeInsetsZero;
 		[self setZoomScale:self.minimumZoomScale animated:YES];
         
-        self.photoBrowser.frameMode = NO;
+        self.photoBrowser.zoomMode = RBSZoomModePage;
 		
 	} else {
 		
@@ -284,7 +284,7 @@
             
             [self zoomToCurrentFrame];
             
-            self.photoBrowser.frameMode = YES;
+            self.photoBrowser.zoomMode = RBSZoomModeFrame;
         }
         
 	}

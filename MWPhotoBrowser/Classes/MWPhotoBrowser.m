@@ -142,7 +142,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 @synthesize displayActionButton = _displayActionButton, actionsSheet = _actionsSheet;
 @synthesize progressHUD = _progressHUD;
 @synthesize previousViewControllerBackButton = _previousViewControllerBackButton;
-@synthesize frameMode = _frameMode;
+@synthesize zoomMode = _zoomMode;
 
 #pragma mark - NSObject
 
@@ -162,6 +162,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         _photos = [[NSMutableArray alloc] init];
         _displayActionButton = NO;
         _didSavePreviousStateOfNavBar = NO;
+        _zoomMode = RBSZoomModePage;
         
         // Listen for MWPhoto notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -859,7 +860,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         [self didStartViewingPageAtIndex:index];
     }
     
-    if (self.frameMode) {
+    if (self.zoomMode == RBSZoomModeFrame) {
         // Either we start at the first or the last frame
         if (_currentPageIndex == previousCurrentPage + 1)
             self.currentPage.currentFrameIndex = 0;
@@ -913,7 +914,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)gotoPreviousPage
 {
-    if (self.frameMode && !self.currentPage.isShowingFirstFrame) {
+    if (self.zoomMode == RBSZoomModeFrame && !self.currentPage.isShowingFirstFrame) {
         [self.currentPage jumpToPreviousFrame];
         [self updateNavigation];
     }
@@ -924,7 +925,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)gotoNextPage
 {
-    if (self.frameMode && !self.currentPage.isShowingLastFrame) {
+    if (self.zoomMode == RBSZoomModeFrame && !self.currentPage.isShowingLastFrame) {
         [self.currentPage jumpToNextFrame];
         [self updateNavigation];
     }
@@ -1211,10 +1212,10 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 #pragma mark - Frame browsing
 
-- (void)setFrameMode:(BOOL)frameMode
+- (void)setZoomMode:(RBSZoomMode)zoomMode
 {
-    _frameMode = frameMode;
-    if (_frameMode == YES) {
+    _zoomMode = zoomMode;
+    if (_zoomMode == RBSZoomModeFrame) {
         _pagingScrollView.scrollEnabled = NO;
         self.currentPage.scrollEnabled = NO;
     }

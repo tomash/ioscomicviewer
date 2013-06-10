@@ -19,6 +19,12 @@
 #define MWLog(x, ...)
 #endif
 
+typedef enum {
+	RBSZoomModePage,
+	RBSZoomModeWidth,
+	RBSZoomModeFrame
+} RBSZoomMode;
+
 // Delgate
 @class MWPhotoBrowser;
 @protocol MWPhotoBrowserDelegate <NSObject>
@@ -33,7 +39,7 @@
 
 // Properties
 @property (nonatomic) BOOL displayActionButton;
-@property (nonatomic) BOOL frameMode;
+@property (nonatomic) RBSZoomMode zoomMode;
 
 // Init
 - (id)initWithPhotos:(NSArray *)photosArray  __attribute__((deprecated)); // Depreciated
