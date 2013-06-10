@@ -211,6 +211,8 @@
     CGRect frameToCenter = _photoImageView.frame;
     
     if (!self.photoBrowser.frameMode) {
+        self.contentInset = UIEdgeInsetsZero;
+        
         // Horizontally
         if (frameToCenter.size.width < boundsSize.width) {
             frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2.0);
