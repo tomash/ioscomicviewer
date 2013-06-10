@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		2459D97D175F3E3900D2D14D /* RBSScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D97C175F3E3900D2D14D /* RBSScreen.m */; };
 		2459D97F175F4BD900D2D14D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D97E175F4BD800D2D14D /* QuartzCore.framework */; };
-		2459D9A9175F586C00D2D14D /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D983175F586C00D2D14D /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2459D9A9175F586C00D2D14D /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D983175F586C00D2D14D /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated"; }; };
 		2459D9AA175F586C00D2D14D /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D985175F586C00D2D14D /* MWPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2459D9AB175F586C00D2D14D /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D987175F586C00D2D14D /* MWPhotoBrowser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2459D9AB175F586C00D2D14D /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D987175F586C00D2D14D /* MWPhotoBrowser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated"; }; };
 		2459D9AC175F586C00D2D14D /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D98A175F586C00D2D14D /* MWTapDetectingImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2459D9AD175F586C00D2D14D /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D98C175F586C00D2D14D /* MWTapDetectingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2459D9AE175F586C00D2D14D /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D98E175F586C00D2D14D /* MWZoomingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2459D9AF175F586C00D2D14D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D992175F586C00D2D14D /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2459D9AF175F586C00D2D14D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D992175F586C00D2D14D /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated"; }; };
 		2459D9B0175F586C00D2D14D /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 2459D993175F586C00D2D14D /* README.mdown */; };
 		2459D9B1175F586C00D2D14D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2459D995175F586C00D2D14D /* LICENSE */; };
 		2459D9B2175F586C00D2D14D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2459D996175F586C00D2D14D /* README.md */; };
