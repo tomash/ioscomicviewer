@@ -12,6 +12,8 @@
 #import "RBSScreen.h"
 #import "RBSIndexController.h"
 
+#define kAcceptedExtensionsPattern @"cbz|acv"
+
 @interface RBSIndexController ()
 @property (readonly) NSArray *comicFiles;
 - (void)reloadComicFiles;
@@ -57,10 +59,11 @@
     if (_comicFiles == nil) {
         NSString *documentsDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSArray *allFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kAcceptedExtensionsPattern options:NSRegularExpressionCaseInsensitive error:nil];
 
-        // TODO: Smarter file type checking (case insensitive & allow ACV)
         _comicFiles = [[allFiles select:^BOOL(NSString *filename) {
-            return ([filename.pathExtension isEqualToString:@"cbz"]);
+            NSUInteger numMatches = [regex numberOfMatchesInString:filename.pathExtension options:0 range:NSMakeRange(0, filename.pathExtension.length)];
+            return numMatches > 0;
         }] map:^id(NSString *filename) {
             return [documentsDir stringByAppendingPathComponent:filename];
         }];
