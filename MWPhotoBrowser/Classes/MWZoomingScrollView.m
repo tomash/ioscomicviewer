@@ -196,7 +196,7 @@
 #pragma mark - Layout
 
 - (void)layoutSubviews {
-	
+    
 	// Update tap view frame
 	_tapView.frame = self.bounds;
 	
@@ -210,24 +210,26 @@
     CGSize boundsSize = self.bounds.size;
     CGRect frameToCenter = _photoImageView.frame;
     
-    // Horizontally
-    if (frameToCenter.size.width < boundsSize.width) {
-        frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2.0);
-	} else {
-        frameToCenter.origin.x = 0;
-	}
-    
-    // Vertically
-    if (frameToCenter.size.height < boundsSize.height) {
-        frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2.0);
-	} else {
-        frameToCenter.origin.y = 0;
-	}
-    
-	// Center
-	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter))
-		_photoImageView.frame = frameToCenter;
-	
+    if (!self.photoBrowser.frameMode) {
+        // Horizontally
+        if (frameToCenter.size.width < boundsSize.width) {
+            frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2.0);
+        } else {
+            frameToCenter.origin.x = 0;
+        }
+        
+        // Vertically
+        if (frameToCenter.size.height < boundsSize.height) {
+            frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2.0);
+        } else {
+            frameToCenter.origin.y = 0;
+        }
+        
+        // Center
+        if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter))
+            _photoImageView.frame = frameToCenter;
+        
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -275,8 +277,6 @@
         if (index != -1) {
             self.currentFrameIndex = index;
             
-            CGSize size = [[UIScreen mainScreen] bounds].size;
-            self.contentInset = UIEdgeInsetsMake(size.height / 2, size.width / 2, size.height / 2, size.width / 2);
             [self zoomToCurrentFrame];
             
             self.photoBrowser.frameMode = YES;
@@ -330,6 +330,12 @@
 
 - (void)zoomToCurrentFrame
 {
+    // Allows centering of image edges
+    self.contentInset = UIEdgeInsetsMake(240, 240, 240, 240);
+
+    // Reset image position (fixes weird offset problems when zooming)
+    _photoImageView.frame = CGRectMake(0, 0, _photoImageView.frame.size.width, _photoImageView.frame.size.height);
+    
     RBSFrame *frame = self.screen.frames[self.currentFrameIndex];
     CGRect rect = [self absoluteImageRect:frame.rect];
     [self zoomToRect:rect animated:YES];
