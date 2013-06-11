@@ -127,9 +127,10 @@
 			photoImageViewFrame.size = img.size;
 			_photoImageView.frame = photoImageViewFrame;
 			self.contentSize = photoImageViewFrame.size;
-
+            
 			// Set zoom to minimum zoom
-			[self setMaxMinZoomScalesForCurrentBounds];
+            if (self.photoBrowser.zoomMode == RBSZoomModePage)
+                [self setMaxMinZoomScalesForCurrentBounds];
 			
 		} else {
 			
@@ -210,7 +211,7 @@
     CGSize boundsSize = self.bounds.size;
     CGRect frameToCenter = _photoImageView.frame;
     
-    if (self.photoBrowser.zoomMode != RBSZoomModeFrame) {
+    if (self.photoBrowser.zoomMode == RBSZoomModePage) {
         self.contentInset = UIEdgeInsetsZero;
         
         // Horizontally
@@ -231,6 +232,21 @@
         if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter))
             _photoImageView.frame = frameToCenter;
         
+    }
+    else if (self.photoBrowser.zoomMode == RBSZoomModeWidth) {
+        CGSize boundsSize = self.bounds.size;
+        CGSize imageSize = _photoImageView.image.size;
+        
+        // Calculate Min
+        CGFloat xScale = boundsSize.width / imageSize.width;    // the scale needed to perfectly fit the image width-wise
+        
+        self.minimumZoomScale = xScale;
+        self.maximumZoomScale = xScale;
+        self.zoomScale = xScale;
+        
+        _photoImageView.frame = CGRectMake(0, 0, _photoImageView.frame.size.width, _photoImageView.frame.size.height);
+        
+        NSLog(@"offset: %@, scale: %f", NSStringFromCGPoint(self.contentOffset), self.zoomScale);
     }
     else {
         [self zoomToCurrentFrame];
@@ -266,25 +282,31 @@
 	// Cancel any single tap handling
 	[NSObject cancelPreviousPerformRequestsWithTarget:_photoBrowser];
 	
-	// Zoom
-	if (self.photoBrowser.zoomMode == RBSZoomModeFrame) {
+    [self.photoBrowser toggleZoomMode];
+    
+    NSLog(@"zoom mode: %d", self.photoBrowser.zoomMode);
+
+    // Adjust current view depending on new zoom mode
+	if (self.photoBrowser.zoomMode == RBSZoomModePage) {
 		
 		// Zoom out
         self.contentInset = UIEdgeInsetsZero;
 		[self setZoomScale:self.minimumZoomScale animated:YES];
+		
+	}
+    else if (self.photoBrowser.zoomMode == RBSZoomModeWidth) {
         
-        self.photoBrowser.zoomMode = RBSZoomModePage;
+        [self setNeedsLayout];
+    }
+    else if (self.photoBrowser.zoomMode == RBSZoomModeFrame) {
 		
-	} else {
-		
+        [self setMaxMinZoomScalesForCurrentBounds];
+        
 		// Find a frame under touch location
         NSInteger index = [self.screen indexOfFrameAtPoint:[self relativeImagePoint:touchPoint]];
         if (index != -1) {
             self.currentFrameIndex = index;
-            
             [self zoomToCurrentFrame];
-            
-            self.photoBrowser.zoomMode = RBSZoomModeFrame;
         }
         
 	}
@@ -375,6 +397,14 @@
 - (BOOL)isShowingLastFrame
 {
     return self.currentFrameIndex == self.lastFrameIndex;
+}
+
+- (CGFloat)imageWidthZoomScale
+{
+    CGSize boundsSize = self.bounds.size;
+    CGSize imageSize = _photoImageView.image.size;
+    
+    return boundsSize.width / imageSize.width;
 }
 
 @end
