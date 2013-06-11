@@ -45,8 +45,12 @@
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSLog(@"opening url: %@ from %@", url, sourceApplication);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:url.lastPathComponent];
     
+    [[NSFileManager defaultManager] copyItemAtPath:url.path toPath:destinationPath error:nil];
+
     return true;
 }
 
