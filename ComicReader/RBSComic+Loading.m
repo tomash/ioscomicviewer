@@ -25,7 +25,7 @@ RXMLElement *loadMetadata(ZZArchive *archive)
     }
 }
 
-NSArray *loadScreens(ZZArchive *archive)
+NSArray *loadScreens(ZZArchive *archive, RXMLElement *metadata)
 {
     // 1. [select] only ZZArchiveEntries with images
     NSArray *entries = [archive.entries select:^BOOL(ZZArchiveEntry *entry) {
@@ -34,8 +34,6 @@ NSArray *loadScreens(ZZArchive *archive)
         return (UTTypeConformsTo(fileUTI, kUTTypeImage));
     }];
     
-    RXMLElement *metadata = loadMetadata(archive);
-
     if (metadata != nil) {
         // 2. Find "screen" XML elements
         NSMutableArray *screens = [NSMutableArray array];
@@ -64,9 +62,11 @@ NSArray *loadScreens(ZZArchive *archive)
 {
     // TODO: Check if archive opened successfully
     ZZArchive *archive = [ZZArchive archiveWithContentsOfURL:url];
+    RXMLElement *metadata = loadMetadata(archive);
     
     RBSComic *comic = [[RBSComic alloc] init];
-    comic.screens = loadScreens(archive);
+    comic.hasFrameMetadata = (metadata != nil);
+    comic.screens = loadScreens(archive, metadata);
     
     // NOTE: A reference to ZZArchive must be preserved
     comic.archive = archive;

@@ -14,5 +14,6 @@
 
 @property ZZArchive *archive;
 @property NSArray *screens;
+@property BOOL hasFrameMetadata;
 
 @end

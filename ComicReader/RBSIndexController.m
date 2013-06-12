@@ -86,6 +86,11 @@
     return self.currentComic.screens[index];
 }
 
+- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser shouldAllowZoomMode:(RBSZoomMode)zoomMode
+{
+    return (zoomMode != RBSZoomModeFrame) || self.currentComic.hasFrameMetadata;
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -114,6 +119,8 @@
 {
     NSURL *comicURL = [NSURL fileURLWithPath:self.comicFiles[indexPath.row]];
     self.currentComic = [RBSComic comicWithURL:comicURL];
+    
+    NSLog(@"has metadata: %d", self.currentComic.hasFrameMetadata);
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     [self.navigationController pushViewController:browser animated:YES];

@@ -12,5 +12,6 @@
 
 @synthesize archive = _archive;
 @synthesize screens = _screens;
+@synthesize hasFrameMetadata = _hasFrameMetadata;
 
 @end
