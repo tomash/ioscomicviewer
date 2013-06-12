@@ -511,10 +511,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00EF024EB101420F95ACE22E /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lukasz Adamczak (72RTV5RNE8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lukasz Adamczak (72RTV5RNE8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ComicReader/ComicReader-Prefix.pch";
 				INFOPLIST_FILE = "ComicReader/ComicReader-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1CF522C6-80B1-4A3B-8FE5-1357444F9E2F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CF522C6-80B1-4A3B-8FE5-1357444F9E2F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
