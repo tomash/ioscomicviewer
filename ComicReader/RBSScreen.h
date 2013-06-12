@@ -13,6 +13,7 @@
 
 @interface RBSScreen : NSObject <MWPhoto>
 
+@property (readonly) UIColor *backgroundColor;
 @property (readonly) NSArray *frames;
 @property (readonly) NSUInteger numFrames;
 

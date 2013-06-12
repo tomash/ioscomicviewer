@@ -64,6 +64,14 @@ NSArray *parseFramesMetadata(NSArray *framesMetadata)
     return [[RBSScreen alloc] initWithArchiveEntry:entry metadata:metadata];
 }
 
+- (UIColor *)backgroundColor
+{
+    if (self.metadata && [self.metadata attribute:@"bgcolor"]) {
+        return [UIColor colorFromHexString:[self.metadata attribute:@"bgcolor"]];
+    }
+    return nil;
+}
+
 - (NSArray *)frames
 {
     if (_frames == nil) {

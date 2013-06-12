@@ -130,6 +130,11 @@
             
 			// Set zoom to minimum zoom
             [self setMaxMinZoomScalesForCurrentBounds];
+            
+            // Set background color if set on the screen
+            UIColor *backgroundColor = [self.screen backgroundColor];
+            _photoImageView.backgroundColor = backgroundColor;
+            self.backgroundColor = backgroundColor;
 			
 		} else {
 			
