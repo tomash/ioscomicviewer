@@ -245,8 +245,6 @@
         self.zoomScale = xScale;
         
         _photoImageView.frame = CGRectMake(0, 0, _photoImageView.frame.size.width, _photoImageView.frame.size.height);
-        
-        NSLog(@"offset: %@, scale: %f", NSStringFromCGPoint(self.contentOffset), self.zoomScale);
     }
     else {
         [self zoomToCurrentFrame];
@@ -284,14 +282,12 @@
 	
     [self.photoBrowser toggleZoomMode];
     
-    NSLog(@"zoom mode: %d", self.photoBrowser.zoomMode);
-
     // Adjust current view depending on new zoom mode
 	if (self.photoBrowser.zoomMode == RBSZoomModePage) {
 		
 		// Zoom out
         self.contentInset = UIEdgeInsetsZero;
-		[self setZoomScale:self.minimumZoomScale animated:YES];
+        [self setMaxMinZoomScalesForCurrentBounds];
 		
 	}
     else if (self.photoBrowser.zoomMode == RBSZoomModeWidth) {
