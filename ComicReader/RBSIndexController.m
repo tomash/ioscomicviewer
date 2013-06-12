@@ -91,6 +91,11 @@
     return (zoomMode != RBSZoomModeFrame) || self.currentComic.hasFrameMetadata;
 }
 
+- (UIColor *)backgroundColorForPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+    return self.currentComic.backgroundColor;
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

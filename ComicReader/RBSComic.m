@@ -13,5 +13,6 @@
 @synthesize archive = _archive;
 @synthesize screens = _screens;
 @synthesize hasFrameMetadata = _hasFrameMetadata;
+@synthesize backgroundColor = _backgroundColor;
 
 @end

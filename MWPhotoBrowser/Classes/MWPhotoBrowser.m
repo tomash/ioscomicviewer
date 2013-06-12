@@ -18,7 +18,7 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-#define PADDING                 10
+#define PADDING                 0
 #define PAGE_INDEX_TAG_OFFSET   1000
 #define PAGE_INDEX(page)        ([(page) tag] - PAGE_INDEX_TAG_OFFSET)
 
@@ -239,8 +239,14 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	_pagingScrollView.delegate = self;
 	_pagingScrollView.showsHorizontalScrollIndicator = NO;
 	_pagingScrollView.showsVerticalScrollIndicator = NO;
-	_pagingScrollView.backgroundColor = [UIColor blackColor];
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
+    
+    // Ask delegate for background color
+    if ([_delegate respondsToSelector:@selector(backgroundColorForPhotoBrowser:)])
+        _pagingScrollView.backgroundColor = [_delegate backgroundColorForPhotoBrowser:self];
+    else
+        _pagingScrollView.backgroundColor = [UIColor blackColor];
+    
 	[self.view addSubview:_pagingScrollView];
 	
     // Toolbar

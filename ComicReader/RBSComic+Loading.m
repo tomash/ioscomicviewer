@@ -56,6 +56,14 @@ NSArray *loadScreens(ZZArchive *archive, RXMLElement *metadata)
     }
 }
 
+UIColor *parseColor(NSString *colorString)
+{
+    if (colorString != nil) {
+        return [UIColor colorFromHexString:colorString];
+    }
+    return nil;
+}
+
 @implementation RBSComic (Loading)
 
 + (RBSComic *)comicWithURL:(NSURL *)url
@@ -65,8 +73,17 @@ NSArray *loadScreens(ZZArchive *archive, RXMLElement *metadata)
     RXMLElement *metadata = loadMetadata(archive);
     
     RBSComic *comic = [[RBSComic alloc] init];
-    comic.hasFrameMetadata = (metadata != nil);
-    comic.screens = loadScreens(archive, metadata);
+    
+    if (metadata != nil) {
+        comic.backgroundColor = parseColor([metadata attribute:@"bgcolor"]);
+        comic.hasFrameMetadata = YES;
+        comic.screens = loadScreens(archive, metadata);
+    }
+    else {
+        comic.hasFrameMetadata = NO;
+        comic.screens = loadScreens(archive, metadata);
+
+    }
     
     // NOTE: A reference to ZZArchive must be preserved
     comic.archive = archive;

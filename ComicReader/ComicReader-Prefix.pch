@@ -14,4 +14,5 @@
     #import <zipzap.h>
     #import <RXMLElement.h>
     #import <NSArray+BlocksKit.h>
+    #import "UIColor+HexString.h"
 #endif

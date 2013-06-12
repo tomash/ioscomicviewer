@@ -16,4 +16,7 @@
 @property NSArray *screens;
 @property BOOL hasFrameMetadata;
 
+// Parsed from metadata
+@property UIColor *backgroundColor;
+
 @end

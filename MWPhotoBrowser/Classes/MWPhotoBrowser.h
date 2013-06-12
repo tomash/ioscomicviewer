@@ -33,6 +33,7 @@ typedef enum {
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser shouldAllowZoomMode:(RBSZoomMode)zoomMode;
 @optional
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index;
+- (UIColor *)backgroundColorForPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 @end
 
 // MWPhotoBrowser

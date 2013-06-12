@@ -29,6 +29,7 @@
 		2459D9BB175F58EC00D2D14D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D9BA175F58EC00D2D14D /* ImageIO.framework */; };
 		2459D9BD175F58F400D2D14D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D9BC175F58F400D2D14D /* MessageUI.framework */; };
 		246274681768849A001D66EA /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 246274671768849A001D66EA /* MWPhotoBrowser.bundle */; };
+		2476FC591768B98100FC00B5 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2476FC581768B98100FC00B5 /* UIColor+HexString.m */; };
 		24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 24998F4B1760B79100C4F931 /* RBSFrame.m */; };
 		24D90F731765F44F00D7F0CA /* RBSComic+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D90F721765F44F00D7F0CA /* RBSComic+Loading.m */; };
 		24FE6C10175DE8FB007A6533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FE6C0F175DE8FB007A6533 /* UIKit.framework */; };
@@ -91,6 +92,8 @@
 		2459D9BA175F58EC00D2D14D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2459D9BC175F58F400D2D14D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		246274671768849A001D66EA /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		2476FC571768B98100FC00B5 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		2476FC581768B98100FC00B5 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		24998F4A1760B79100C4F931 /* RBSFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSFrame.h; sourceTree = "<group>"; };
 		24998F4B1760B79100C4F931 /* RBSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSFrame.m; sourceTree = "<group>"; };
 		24D90F711765F44F00D7F0CA /* RBSComic+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RBSComic+Loading.h"; sourceTree = "<group>"; };
@@ -212,6 +215,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		2476FC561768B96A00FC00B5 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2476FC571768B98100FC00B5 /* UIColor+HexString.h */,
+				2476FC581768B98100FC00B5 /* UIColor+HexString.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		24998F491760B77C00C4F931 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +276,7 @@
 		24FE6C15175DE8FB007A6533 /* ComicReader */ = {
 			isa = PBXGroup;
 			children = (
+				2476FC561768B96A00FC00B5 /* Categories */,
 				24998F491760B77C00C4F931 /* Models */,
 				24FE6C1E175DE8FB007A6533 /* RBSAppDelegate.h */,
 				24FE6C1F175DE8FB007A6533 /* RBSAppDelegate.m */,
@@ -414,6 +427,7 @@
 				2459D9B9175F586C00D2D14D /* UIImageView+WebCache.m in Sources */,
 				24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */,
 				24D90F731765F44F00D7F0CA /* RBSComic+Loading.m in Sources */,
+				2476FC591768B98100FC00B5 /* UIColor+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
