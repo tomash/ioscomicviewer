@@ -114,6 +114,7 @@
 
     NSString *filename = self.comicFiles[indexPath.row];
     cell.textLabel.text = filename.lastPathComponent;
+    cell.imageView.image = [UIImage imageNamed:@"Default.png"];
 
     return cell;
 }
