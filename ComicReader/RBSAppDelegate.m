@@ -6,13 +6,17 @@
 //  Copyright (c) 2013 Rebased s.c. All rights reserved.
 //
 
+#import "RBSIndexController.h"
 #import "RBSAppDelegate.h"
+
+#define kAcceptedExtensionsPattern @"cbz|acv"
 
 @implementation RBSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [self loadComicFilesList];
+    
     return YES;
 }
 							
@@ -35,7 +39,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self loadComicFilesList];
+    [self.indexController.tableView reloadData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -52,6 +57,30 @@
     [[NSFileManager defaultManager] copyItemAtPath:url.path toPath:destinationPath error:nil];
 
     return true;
+}
+
+#pragma mark RBSIndexController updates
+
+- (RBSIndexController *)indexController
+{
+    return (RBSIndexController *)[(UINavigationController *)self.window.rootViewController topViewController];
+}
+
+- (void)loadComicFilesList
+{
+    NSString *documentsDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSArray *allFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kAcceptedExtensionsPattern options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray *comicFiles = [[allFiles select:^BOOL(NSString *filename) {
+        NSUInteger numMatches = [regex numberOfMatchesInString:filename.pathExtension options:0 range:NSMakeRange(0, filename.pathExtension.length)];
+        return numMatches > 0;
+    }] map:^id(NSString *filename) {
+        return [documentsDir stringByAppendingPathComponent:filename];
+    }];
+    
+    // topViewController is our comic index
+    self.indexController.comicFiles = comicFiles;
 }
 
 @end

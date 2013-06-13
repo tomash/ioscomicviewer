@@ -13,64 +13,9 @@
 #import "RBSScreen.h"
 #import "RBSIndexController.h"
 
-#define kAcceptedExtensionsPattern @"cbz|acv"
-
-@interface RBSIndexController ()
-@property (readonly) NSArray *comicFiles;
-- (void)reloadComicFiles;
-@end
-
 @implementation RBSIndexController
 
 @synthesize comicFiles = _comicFiles;
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Make sure index is reloaded when returning to foreground
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(reloadComicFiles)
-                                                 name: UIApplicationDidBecomeActiveNotification
-                                               object: nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self reloadComicFiles];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)reloadComicFiles
-{
-    _comicFiles = nil;
-    [self.tableView reloadData];
-}
-
-#pragma mark Properties
-
-- (NSArray *)comicFiles
-{
-    if (_comicFiles == nil) {
-        NSString *documentsDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSArray *allFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kAcceptedExtensionsPattern options:NSRegularExpressionCaseInsensitive error:nil];
-
-        _comicFiles = [[allFiles select:^BOOL(NSString *filename) {
-            NSUInteger numMatches = [regex numberOfMatchesInString:filename.pathExtension options:0 range:NSMakeRange(0, filename.pathExtension.length)];
-            return numMatches > 0;
-        }] map:^id(NSString *filename) {
-            return [documentsDir stringByAppendingPathComponent:filename];
-        }];
-    }
-    return _comicFiles;
-}
 
 #pragma mark MWPhotoBrowserDelegate
 
