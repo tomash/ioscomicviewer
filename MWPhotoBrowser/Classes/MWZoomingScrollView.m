@@ -352,7 +352,15 @@
     
     RBSFrame *frame = self.screen.frames[self.currentFrameIndex];
     CGRect rect = [self absoluteImageRect:frame.rect];
-    [self zoomToRect:rect animated:YES];
+    
+    if (frame.transitionDuration > 0) {
+        [UIView animateWithDuration:frame.transitionDuration animations:^{
+            [self zoomToRect:rect animated:NO];
+        }];
+    }
+    else {
+        [self zoomToRect:rect animated:NO];
+    }
 }
 
 - (void)jumpToNextFrame

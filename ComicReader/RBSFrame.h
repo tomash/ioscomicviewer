@@ -10,8 +10,7 @@
 
 @interface RBSFrame : NSObject
 
-@property (readonly) CGRect rect;
-
-- (id)initWithRect:(CGRect)rect;
+@property CGRect rect;
+@property NSTimeInterval transitionDuration;
 
 @end

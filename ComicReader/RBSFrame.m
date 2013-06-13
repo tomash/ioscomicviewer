@@ -11,14 +11,6 @@
 @implementation RBSFrame
 
 @synthesize rect = _rect;
-
-- (id)initWithRect:(CGRect)rect
-{
-    self = [super init];
-    if (self) {
-        _rect = rect;
-    }
-    return self;
-}
+@synthesize transitionDuration = _transitionDuration;
 
 @end

@@ -24,8 +24,10 @@ CGRect rectFromRelativeAreaAttribute(NSString *attributeString)
 NSArray *parseFramesMetadata(NSArray *framesMetadata)
 {
     return [framesMetadata map:^id(RXMLElement *element) {
-        CGRect rect = rectFromRelativeAreaAttribute([element attribute:@"relativeArea"]);
-        return [[RBSFrame alloc] initWithRect:rect];
+        RBSFrame *frame = [[RBSFrame alloc] init];
+        frame.rect = rectFromRelativeAreaAttribute([element attribute:@"relativeArea"]);
+        frame.transitionDuration = [[element attribute:@"transitionDuration"] doubleValue];
+        return frame;
     }];
 }
 
