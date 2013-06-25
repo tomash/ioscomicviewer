@@ -12,11 +12,13 @@
 
 @interface RBSComic : NSObject
 
+@property NSURL *fileURL;
 @property ZZArchive *archive;
 @property NSArray *screens;
 @property BOOL hasFrameMetadata;
-
-// Parsed from metadata
 @property UIColor *backgroundColor;
+
+@property NSString *title;
+@property NSString *author;
 
 @end

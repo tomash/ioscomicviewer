@@ -74,16 +74,20 @@ UIColor *parseColor(NSString *colorString)
     
     RBSComic *comic = [[RBSComic alloc] init];
     
+    comic.fileURL = url;
+    
     if (metadata != nil) {
+        comic.title = [metadata attribute:@"title"];
+        comic.author = [metadata attribute:@"author"];
         comic.backgroundColor = parseColor([metadata attribute:@"bgcolor"]);
         comic.hasFrameMetadata = YES;
-        comic.screens = loadScreens(archive, metadata);
     }
     else {
+        comic.title = url.lastPathComponent;
         comic.hasFrameMetadata = NO;
-        comic.screens = loadScreens(archive, metadata);
-
     }
+
+    comic.screens = loadScreens(archive, metadata);
     
     // NOTE: A reference to ZZArchive must be preserved
     comic.archive = archive;

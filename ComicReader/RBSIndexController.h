@@ -13,7 +13,7 @@
 
 @interface RBSIndexController : UITableViewController <MWPhotoBrowserDelegate, UITableViewDataSource>
 
-@property NSArray *comicFiles;
+@property NSArray *comics;
 @property RBSComic *currentComic;
 
 @end

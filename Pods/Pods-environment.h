@@ -22,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_libffi
 #define COCOAPODS_VERSION_MAJOR_libffi 3
 #define COCOAPODS_VERSION_MINOR_libffi 0
-#define COCOAPODS_VERSION_PATCH_libffi 11
+#define COCOAPODS_VERSION_PATCH_libffi 13
 
 // zipzap
 #define COCOAPODS_POD_AVAILABLE_zipzap

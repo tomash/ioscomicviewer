@@ -30,6 +30,7 @@
 		2459D9BD175F58F400D2D14D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D9BC175F58F400D2D14D /* MessageUI.framework */; };
 		246274681768849A001D66EA /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 246274671768849A001D66EA /* MWPhotoBrowser.bundle */; };
 		2476FC591768B98100FC00B5 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2476FC581768B98100FC00B5 /* UIColor+HexString.m */; };
+		248ED16D177A5E1600B6B78E /* UIImage+Thumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 248ED16C177A5E1600B6B78E /* UIImage+Thumbnails.m */; };
 		24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 24998F4B1760B79100C4F931 /* RBSFrame.m */; };
 		24D90F731765F44F00D7F0CA /* RBSComic+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D90F721765F44F00D7F0CA /* RBSComic+Loading.m */; };
 		24FE6C10175DE8FB007A6533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FE6C0F175DE8FB007A6533 /* UIKit.framework */; };
@@ -94,6 +95,8 @@
 		246274671768849A001D66EA /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		2476FC571768B98100FC00B5 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
 		2476FC581768B98100FC00B5 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		248ED16B177A5E1600B6B78E /* UIImage+Thumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Thumbnails.h"; sourceTree = "<group>"; };
+		248ED16C177A5E1600B6B78E /* UIImage+Thumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Thumbnails.m"; sourceTree = "<group>"; };
 		24998F4A1760B79100C4F931 /* RBSFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSFrame.h; sourceTree = "<group>"; };
 		24998F4B1760B79100C4F931 /* RBSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSFrame.m; sourceTree = "<group>"; };
 		24D90F711765F44F00D7F0CA /* RBSComic+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RBSComic+Loading.h"; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 			children = (
 				2476FC571768B98100FC00B5 /* UIColor+HexString.h */,
 				2476FC581768B98100FC00B5 /* UIColor+HexString.m */,
+				248ED16B177A5E1600B6B78E /* UIImage+Thumbnails.h */,
+				248ED16C177A5E1600B6B78E /* UIImage+Thumbnails.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				24998F4C1760B79100C4F931 /* RBSFrame.m in Sources */,
 				24D90F731765F44F00D7F0CA /* RBSComic+Loading.m in Sources */,
 				2476FC591768B98100FC00B5 /* UIColor+HexString.m in Sources */,
+				248ED16D177A5E1600B6B78E /* UIImage+Thumbnails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

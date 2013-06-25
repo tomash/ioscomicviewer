@@ -8,6 +8,7 @@
 
 #import <zipzap.h>
 #import <NSArray+BlocksKit.h>
+#import "UIImage+Thumbnails.h"
 #import "RBSComic.h"
 #import "RBSComic+Loading.h"
 #import "RBSScreen.h"
@@ -15,7 +16,7 @@
 
 @implementation RBSIndexController
 
-@synthesize comicFiles = _comicFiles;
+@synthesize comics = _comics;
 
 #pragma mark MWPhotoBrowserDelegate
 
@@ -50,17 +51,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.comicFiles.count;
+    return self.comics.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComicCell"];
 
-    NSString *filename = self.comicFiles[indexPath.row];
-    cell.textLabel.text = filename.lastPathComponent;
-    cell.imageView.image = [UIImage imageNamed:@"Default.png"];
-
+    RBSComic *comic = self.comics[indexPath.row];
+    
+    cell.textLabel.text = comic.title;
+    cell.detailTextLabel.text = comic.author;
+    
+    UIImage *coverImage = [comic.screens[0] underlyingImage];
+    cell.imageView.image = [UIImage imageWithImage:coverImage scaledToWidth:70.0f height:70.0f];
+    
     return cell;
 }
 
@@ -68,8 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSURL *comicURL = [NSURL fileURLWithPath:self.comicFiles[indexPath.row]];
-    self.currentComic = [RBSComic comicWithURL:comicURL];
+    self.currentComic = self.comics[indexPath.row];
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     [self.navigationController pushViewController:browser animated:YES];

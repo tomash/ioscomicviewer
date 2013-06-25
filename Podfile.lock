@@ -1,7 +1,7 @@
 PODS:
   - BlocksKit (1.8.2):
     - libffi
-  - libffi (3.0.11)
+  - libffi (3.0.13)
   - RaptureXML (1.0.1)
   - zipzap (5.0)
 
@@ -12,7 +12,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
-  libffi: 8a1d9ba43c0c84b546b42c6f742714e73aa07ae1
+  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
   zipzap: 9de67d83fbece9d32192b4e7618d2ce1733f3122
 

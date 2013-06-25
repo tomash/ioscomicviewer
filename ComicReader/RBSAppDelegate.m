@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Rebased s.c. All rights reserved.
 //
 
+#import "RBSComic+Loading.h"
 #import "RBSIndexController.h"
 #import "RBSAppDelegate.h"
 
@@ -72,15 +73,17 @@
     NSArray *allFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kAcceptedExtensionsPattern options:NSRegularExpressionCaseInsensitive error:nil];
     
-    NSArray *comicFiles = [[allFiles select:^BOOL(NSString *filename) {
+    NSArray *comics = [[allFiles select:^BOOL(NSString *filename) {
         NSUInteger numMatches = [regex numberOfMatchesInString:filename.pathExtension options:0 range:NSMakeRange(0, filename.pathExtension.length)];
         return numMatches > 0;
     }] map:^id(NSString *filename) {
-        return [documentsDir stringByAppendingPathComponent:filename];
+        NSString *path = [documentsDir stringByAppendingPathComponent:filename];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        return [RBSComic comicWithURL:url];
     }];
     
     // topViewController is our comic index
-    self.indexController.comicFiles = comicFiles;
+    self.indexController.comics = comics;
 }
 
 @end
