@@ -1,0 +1,4 @@
+[submodule "MWPhotoBrowser"]
+	path = MWPhotoBrowser
+	url = https://github.com/sziwan/MWPhotoBrowser.git
+	branch = ioscomicviewer
