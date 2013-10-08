@@ -76,6 +76,9 @@
     self.currentComic = self.comics[indexPath.row];
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = NO;
+    browser.displayNavArrows = YES;
+    browser.zoomMode = RBSZoomModePage;
     [self.navigationController pushViewController:browser animated:YES];
 }
 
