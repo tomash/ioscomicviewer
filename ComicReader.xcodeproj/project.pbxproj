@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2435667017842CAA008ECEDC /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2435666F17842CAA008ECEDC /* icon1.png */; };
+		2435667217842CD9008ECEDC /* icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2435667117842CD9008ECEDC /* icon2.png */; };
 		2459D97D175F3E3900D2D14D /* RBSScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D97C175F3E3900D2D14D /* RBSScreen.m */; };
 		2459D97F175F4BD900D2D14D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459D97E175F4BD800D2D14D /* QuartzCore.framework */; };
 		2459D9A9175F586C00D2D14D /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2459D983175F586C00D2D14D /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated"; }; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		00EF024EB101420F95ACE22E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		2435666F17842CAA008ECEDC /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1.png; path = ../icon1.png; sourceTree = "<group>"; };
+		2435667117842CD9008ECEDC /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2.png; path = ../icon2.png; sourceTree = "<group>"; };
 		2459D97B175F3E3900D2D14D /* RBSScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBSScreen.h; sourceTree = "<group>"; };
 		2459D97C175F3E3900D2D14D /* RBSScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSScreen.m; sourceTree = "<group>"; };
 		2459D97E175F4BD800D2D14D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -101,7 +105,7 @@
 		24998F4B1760B79100C4F931 /* RBSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBSFrame.m; sourceTree = "<group>"; };
 		24D90F711765F44F00D7F0CA /* RBSComic+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RBSComic+Loading.h"; sourceTree = "<group>"; };
 		24D90F721765F44F00D7F0CA /* RBSComic+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RBSComic+Loading.m"; sourceTree = "<group>"; };
-		24FE6C0C175DE8FB007A6533 /* ComicReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComicReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24FE6C0C175DE8FB007A6533 /* Open Comics Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Comics Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FE6C0F175DE8FB007A6533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24FE6C11175DE8FB007A6533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24FE6C13175DE8FB007A6533 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -258,7 +262,7 @@
 		24FE6C0D175DE8FB007A6533 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24FE6C0C175DE8FB007A6533 /* ComicReader.app */,
+				24FE6C0C175DE8FB007A6533 /* Open Comics Reader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,6 +300,8 @@
 		24FE6C16175DE8FB007A6533 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2435666F17842CAA008ECEDC /* icon1.png */,
+				2435667117842CD9008ECEDC /* icon2.png */,
 				24FE6C17175DE8FB007A6533 /* ComicReader-Info.plist */,
 				24FE6C18175DE8FB007A6533 /* InfoPlist.strings */,
 				24FE6C1B175DE8FB007A6533 /* main.m */,
@@ -326,7 +332,7 @@
 			);
 			name = ComicReader;
 			productName = ComicReader;
-			productReference = 24FE6C0C175DE8FB007A6533 /* ComicReader.app */;
+			productReference = 24FE6C0C175DE8FB007A6533 /* Open Comics Reader.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -370,6 +376,8 @@
 				2459D9B1175F586C00D2D14D /* LICENSE in Resources */,
 				2459D9B2175F586C00D2D14D /* README.md in Resources */,
 				246274681768849A001D66EA /* MWPhotoBrowser.bundle in Resources */,
+				2435667017842CAA008ECEDC /* icon1.png in Resources */,
+				2435667217842CD9008ECEDC /* icon2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +530,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ComicReader/ComicReader-Prefix.pch";
 				INFOPLIST_FILE = "ComicReader/ComicReader-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Open Comics Reader";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -531,14 +539,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00EF024EB101420F95ACE22E /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lukasz Adamczak (72RTV5RNE8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lukasz Adamczak (72RTV5RNE8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: REBASED SPOLKA CYWILNA BERNARD POTOCKI TOMASZ STACHEWICZ (V7S4RTFPGK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: REBASED SPOLKA CYWILNA BERNARD POTOCKI TOMASZ STACHEWICZ (V7S4RTFPGK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ComicReader/ComicReader-Prefix.pch";
 				INFOPLIST_FILE = "ComicReader/ComicReader-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1CF522C6-80B1-4A3B-8FE5-1357444F9E2F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CF522C6-80B1-4A3B-8FE5-1357444F9E2F";
+				PRODUCT_NAME = "Open Comics Reader";
+				PROVISIONING_PROFILE = "A9F03000-00A9-4850-8499-904FC7A04DC3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9F03000-00A9-4850-8499-904FC7A04DC3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

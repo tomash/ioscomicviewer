@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>Open Comics</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -21,8 +21,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
 			<key>CFBundleTypeName</key>
 			<string>ACV Comic Book Archive</string>
 			<key>LSHandlerRank</key>
@@ -35,8 +33,19 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>icon1.png</string>
+				<string>icon2.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>pl.rebased.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>pl.rebased.OpenComicsReader</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

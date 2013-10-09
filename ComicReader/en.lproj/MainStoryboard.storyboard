@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Index Controller - Comic Reader-->
+        <!--Index Controller - Open Comics Reader-->
         <scene sceneID="0qa-2m-hYF">
             <objects>
                 <tableViewController id="tkG-Ka-CHI" customClass="RBSIndexController" sceneMemberID="viewController">
@@ -40,7 +40,7 @@
                             <outlet property="delegate" destination="tkG-Ka-CHI" id="7zs-oN-iv5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Comic Reader" id="Gt4-rc-5rs">
+                    <navigationItem key="navigationItem" title="Open Comics Reader" id="Gt4-rc-5rs">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qN6-j2-03O"/>
                     </navigationItem>
                 </tableViewController>
